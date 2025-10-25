@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RestrictToDevEnv;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,7 +11,7 @@ Route::get('/', function () {
 Route::get('/info', function () {
     Log::info('Phpinfo page visited');
     return phpinfo();
-});
+})->middleware(RestrictToDevEnv::class);
 
 Route::get('/health', function () {
     $status = [];
