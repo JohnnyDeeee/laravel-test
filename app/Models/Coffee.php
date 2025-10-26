@@ -18,6 +18,10 @@ class Coffee extends Model
         'stock',
     ];
 
+    protected $casts = [
+        'roast_date' => 'date'
+    ];
+
     public function suppliers(): BelongsToMany {
         return $this->belongsToMany(Supplier::class, 'coffee_supplier');
     }

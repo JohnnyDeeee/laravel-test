@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Middleware\RestrictToDevEnv;
+use App\Models\Coffee;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    Log::info('Welcome page visited');
-    return view('welcome');
-});
+    return view('home')->with([
+        'coffees' => Coffee::all(),
+        'suppliers' => Supplier::all(),
+    ]);
+})->name('home');
 
 Route::get('/info', function () {
     Log::info('Phpinfo page visited');
@@ -69,8 +73,10 @@ Route::get('/health', function () {
 Route::get('/login', [LoginController::class, 'showLogin'])
 ->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout'])
+->name('logout');
 
 Route::get('/dashboard', function() {
     return view('dashboard');
-})->middleware(\Illuminate\Auth\Middleware\Authenticate::class);
+})->middleware(\Illuminate\Auth\Middleware\Authenticate::class)
+->name('dashboard');

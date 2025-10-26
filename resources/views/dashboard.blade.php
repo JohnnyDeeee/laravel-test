@@ -1,3 +1,3 @@
-<div>
+<x-layout>
     Dashboard
-</div>
+</x-layout>
