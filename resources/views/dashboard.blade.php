@@ -1,3 +1,3 @@
 <x-layout>
-    Dashboard
+    <x-coffees.create />
 </x-layout>

@@ -71,12 +71,16 @@ Route::get('/health', function () {
 });
 
 Route::get('/login', [LoginController::class, 'showLogin'])
-->name('login');
+    ->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/logout', [LoginController::class, 'logout'])
-->name('logout');
 
-Route::get('/dashboard', function() {
-    return view('dashboard');
-})->middleware(\Illuminate\Auth\Middleware\Authenticate::class)
-->name('dashboard');
+Route::middleware(\Illuminate\Auth\Middleware\Authenticate::class)->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
+
+    Route::view('/coffee/create', 'coffees.create');
+});
