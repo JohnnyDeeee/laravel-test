@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coffee;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CoffeeController extends Controller
 {
@@ -23,11 +25,13 @@ class CoffeeController extends Controller
         $validatedData = $request->validate([
             'name' => ['required'],
             'origin' => ['required'],
-            'roast_date' => ['required'],
-            'stock' => ['required'],
+            'roast_date' => ['required', Rule::date()->beforeToday()],
+            'stock' => ['required', 'numeric:strict', 'gt:0'],
+            'supplier' => ['required', 'numeric:strict', 'gt:0']
         ]);
 
         $coffee = Coffee::create($validatedData);
+        $coffee->suppliers()->attach([$validatedData['supplier']]);
         return response()->json($coffee, 201);
     }
 
