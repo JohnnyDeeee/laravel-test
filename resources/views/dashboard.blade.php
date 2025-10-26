@@ -1,3 +1,3 @@
 <x-layout>
-    <x-coffees.create />
+    <x-coffees.create :suppliers="$suppliers" />
 </x-layout>

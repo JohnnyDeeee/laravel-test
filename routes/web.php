@@ -76,7 +76,9 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::middleware(\Illuminate\Auth\Middleware\Authenticate::class)->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard')->with([
+            'suppliers' => Supplier::all()
+        ]);
     })->name('dashboard');
 
     Route::get('/logout', [LoginController::class, 'logout'])
