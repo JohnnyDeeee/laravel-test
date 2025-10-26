@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Middleware\RestrictToDevEnv;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,12 @@ Route::get('/health', function () {
 
     return response()->json($status, $httpStatus);
 });
+
+Route::get('/login', [LoginController::class, 'showLogin'])
+->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::get('/dashboard', function() {
+    return view('dashboard');
+})->middleware(\Illuminate\Auth\Middleware\Authenticate::class);
