@@ -65,4 +65,4 @@ test('should delete coffee', function() {
 
     // Assert
     $response->assertStatus(200);
-})->only();
+});
