@@ -70,19 +70,19 @@ Route::get('/health', function () {
     return response()->json($status, $httpStatus);
 });
 
-Route::get('/login', [LoginController::class, 'showLogin'])
-    ->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+// Route::get('/login', [LoginController::class, 'showLogin'])
+//     ->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
 
 Route::middleware(\Illuminate\Auth\Middleware\Authenticate::class)->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard')->with([
-            'suppliers' => Supplier::all()
-        ]);
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard')->with([
+    //         'suppliers' => Supplier::all()
+    //     ]);
+    // })->name('dashboard');
 
-    Route::get('/logout', [LoginController::class, 'logout'])
-        ->name('logout');
+    // Route::get('/logout', [LoginController::class, 'logout'])
+    //     ->name('logout');
 
-    Route::view('/coffee/create', 'coffees.create');
+    // Route::view('/coffee/create', 'coffees.create');
 });
