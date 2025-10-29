@@ -3,9 +3,14 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    Log::info('Welcome page visited');
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/login')
+    ->name('login');
+
+Route::get('/register')
+    ->name('register');
 
 Route::get('/info', function () {
     Log::info('Phpinfo page visited');
