@@ -1,3 +1,9 @@
 {
-    "php.validate.executablePath": "./php"
+    "php.validate.executablePath": "./php",
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": "on"
+    }
 }
