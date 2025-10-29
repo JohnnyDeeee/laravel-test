@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home')->with([
-        'coffees' => Coffee::all(),
-        'suppliers' => Supplier::all(),
+        'coffees' => Coffee::paginate(4, pageName: 'coffees'),
+        'suppliers' => Supplier::paginate(4, pageName: 'suppliers'),
     ]);
 })->name('home');
 

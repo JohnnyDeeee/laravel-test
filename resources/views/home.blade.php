@@ -15,6 +15,7 @@
                 @endif
             </div>
         @endforeach
+        {{ $coffees->links() }}
     </div>
 
     <h2>Suppliers</h2>
@@ -32,5 +33,6 @@
                 @endif
             </div>
         @endforeach
+         {{ $suppliers->links() }}
     </div>
 </x-layout>
